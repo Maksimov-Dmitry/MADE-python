@@ -1,2 +1,2 @@
 # MADE-python
-Assignments on python at MADE
+Python assignments at MADE
