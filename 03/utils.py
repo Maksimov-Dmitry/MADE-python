@@ -21,13 +21,13 @@ def mean(last_k):
             start_ts = time.time()
             res = func(*args, **kwargs)
             end_ts = time.time()
-            run_time = end_ts - start_ts
+            run_time = round(end_ts - start_ts, 5)
             if len(run_time_history) < last_k:
                 run_time_history.append(run_time)
             else:
                 run_time_history.insert(0, run_time)
                 run_time_history.pop()
-            wrapper.mean_run_time = {'mean_run_time': round(sum(run_time_history)/len(run_time_history), 5),
+            wrapper.mean_run_time = {'mean_run_time': sum(run_time_history)/len(run_time_history),
                                      'last_k': min(last_k, len(run_time_history))}
             return res
         return wrapper
