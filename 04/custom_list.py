@@ -16,20 +16,13 @@ class CustomList(list):
         5. str(CustomList)
     """
 
-    def __init__(self, lst):
-        super().__init__()
-        self.lst = lst
-
-    def __iter__(self):
-        return iter(self.lst)
-
     def __add__(self, other):
-        new_lst = [x + y for x, y in zip_longest(self.lst, other, fillvalue=0)]
+        new_lst = [x + y for x, y in zip_longest(self, other, fillvalue=0)]
         return CustomList(new_lst)
 
     def __sub__(self, other, is_radd=False):
         new_lst = [y - x if is_radd else x - y
-                   for x, y in zip_longest(self.lst, other, fillvalue=0)]
+                   for x, y in zip_longest(self, other, fillvalue=0)]
         return CustomList(new_lst)
 
     def __radd__(self, other):
@@ -39,22 +32,23 @@ class CustomList(list):
         return self.__sub__(other, is_radd=True)
 
     def __lt__(self, other):
-        return sum(self.lst) < sum(other)
+        return sum(self) < sum(other)
 
     def __le__(self, other):
-        return sum(self.lst) <= sum(other)
+        return sum(self) <= sum(other)
 
     def __eq__(self, other):
-        return sum(self.lst) == sum(other)
+        return sum(self) == sum(other)
 
     def __ne__(self, other):
-        return sum(self.lst) != sum(other)
+        return sum(self) != sum(other)
 
     def __gt__(self, other):
-        return sum(self.lst) > sum(other)
+        return sum(self) > sum(other)
 
     def __ge__(self, other):
-        return sum(self.lst) >= sum(other)
+        return sum(self) >= sum(other)
 
     def __str__(self):
-        return f'{self.lst}, {sum(self.lst)}'
+        str_arr = ", ".join(str(elem) for elem in self)
+        return f'[{str_arr}], {sum(self)}'
