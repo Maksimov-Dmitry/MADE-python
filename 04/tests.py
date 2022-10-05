@@ -6,6 +6,9 @@ from custom_list import CustomList
 
 
 def is_customlist_as_list(custom_list, lst):
+    """
+    Help function to compare list and CustomList
+    """
     return all(i == j for i, j in zip(custom_list, lst))
 
 
