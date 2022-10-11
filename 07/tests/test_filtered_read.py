@@ -52,7 +52,6 @@ class TestReadFilteredFile(unittest.TestCase):
         ]
         for i, line in enumerate(filtered_read(file_name, self.words)):
             self.assertEqual(line, self.filtered_lines[i])
-        m_file_obj.close.assert_called_once_with()
 
     @patch("src.filtered_read._get_filtered_line")
     @patch("builtins.open")
@@ -73,4 +72,3 @@ class TestReadFilteredFile(unittest.TestCase):
         with self.assertRaises(IOError):
             for i, line in enumerate(filtered_read(file_name, self.words)):
                 self.assertEqual(line, self.filtered_lines[i])
-        m_file_obj.close.assert_called_once_with()
